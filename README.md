@@ -108,8 +108,17 @@ There are cases when there are separate applications meant for phone and tablet 
     <meta name="smartbanner:button-url-google-tablet" content="https://android-tablet/application-url">
 ```
 
-**Note:** Is is important that 'global' link will work as fallback for related os device specific links in case if for some reason it will not be possible to identify you Android or iOS device userAgent.
+**Note:** It is important that 'global' link will work as fallback for related os device specific links in case if, for some reason, it will not be possible to identify your Android or iOS device userAgent.
 
+### Add a meta tag controlling when to load a component
+
+It is useful in case if there is a specific requirement to show the smartbanner.js only for specific user group, e.g. for Registered users. In this case smartbanner.js can be initiated based on your own specific requirements by just running `smartbanner.publish()` from anywhere in your app. For this to work you also have to add a specific meta tag:
+
+```html
+    <meta name="smartbanner:auto-load" content="false">
+```
+
+**Note:** If this meta tag gets **omitted** or its `content` attribute is set to `true`, smartbanner.js will be initiated in its usual way - on page load.
 
 ## Contributing
 

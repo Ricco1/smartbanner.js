@@ -134,10 +134,20 @@ var _smartbanner2 = _interopRequireDefault(_smartbanner);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var smartbanner = void 0;
+var autoLoadMeta = void 0;
+var autoLoadState = void 0;
 
 window.addEventListener('load', function () {
-  smartbanner = new _smartbanner2.default();
-  smartbanner.publish();
+  autoLoadMeta = document.querySelector('[name="smartbanner:auto-load"]');
+  autoLoadState = autoLoadMeta && autoLoadMeta.content ? autoLoadMeta.content : 'true';
+
+  if (autoLoadState === 'true') {
+    smartbanner = new _smartbanner2.default();
+    smartbanner.publish();
+  } else {
+    smartbanner = new _smartbanner2.default();
+    window.smartbanner = smartbanner;
+  }
 });
 
 },{"./smartbanner.js":7}],4:[function(require,module,exports){
