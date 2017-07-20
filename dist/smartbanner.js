@@ -468,14 +468,18 @@ var SmartBanner = function () {
       if (!(this.platformEnabled || this.userAgentIncluded)) {
         return false;
       }
-
-      var bannerDiv = document.createElement('div');
-      document.querySelector('body').appendChild(bannerDiv);
-      bannerDiv.outerHTML = this.html;
-      if (!this.positioningDisabled) {
-        setContentPosition(this.height);
+      var element = document.querySelector('.js_smartbanner');
+      if (!element) {
+        var bannerDiv = document.createElement('div');
+        document.querySelector('body').appendChild(bannerDiv);
+        bannerDiv.outerHTML = this.html;
+        if (!this.positioningDisabled) {
+          setContentPosition(this.height);
+        }
+        addEventListeners(this);
+      } else {
+        return false;
       }
-      addEventListeners(this);
     }
   }, {
     key: 'exit',

@@ -205,14 +205,18 @@ export default class SmartBanner {
     if (!(this.platformEnabled || this.userAgentIncluded)) {
       return false;
     }
-
-    let bannerDiv = document.createElement('div');
-    document.querySelector('body').appendChild(bannerDiv);
-    bannerDiv.outerHTML = this.html;
-    if (!this.positioningDisabled) {
-      setContentPosition(this.height);
+    let element = document.querySelector('.js_smartbanner');
+    if (!element) {
+      let bannerDiv = document.createElement('div');
+      document.querySelector('body').appendChild(bannerDiv);
+      bannerDiv.outerHTML = this.html;
+      if (!this.positioningDisabled) {
+        setContentPosition(this.height);
+      }
+      addEventListeners(this);
+    } else {
+      return false;
     }
-    addEventListeners(this);
   }
 
   exit() {
